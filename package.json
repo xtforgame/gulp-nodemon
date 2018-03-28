@@ -30,15 +30,12 @@
   "dependencies": {
     "colors": "^1.0.3",
     "event-stream": "^3.2.1",
-    "gulp": "^3.9.1",
-    "nodemon": "^1.10.2"
+    "gulp": "^4.0.0",
+    "nodemon": "1.17.5"
   },
   "devDependencies": {
-    "should": "^4.0.0",
-    "gulp-jshint": "^1.6.1",
-    "gulp-mocha": "^0.2.0",
-    "is-running": "^1.0.3",
-    "coffee-script": "^1.7.1"
+    "gulp-jshint": "^2.1.0",
+    "jshint": "^2.9.0"
   },
   "directories": {
     "test": "test"
