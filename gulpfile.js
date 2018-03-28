@@ -8,16 +8,18 @@ gulp.task('lint', function (){
     .pipe(jshint())
 })
 
-gulp.task('cssmin', function (done){
-  done();
+gulp.task('cssmin', function (done){ /* void */
+  done()
 })
 
 gulp.task('afterstart', function (done){
-  console.log('proc has finished restarting!');
-  done();
+  console.log('proc has finished restarting!')
+  done()
 })
 
-gulp.task('test', gulp.series('lint', function (done){
+var called = false;
+
+gulp.task('test', gulp.series('lint', function gulp_nodemon (cb) {
   var stream = nodemon({
       nodemon: require('nodemon')
     , script: './server.js'
@@ -26,11 +28,16 @@ gulp.task('test', gulp.series('lint', function (done){
         'NODE_ENV': 'development'
       }
     , watch: './'
-    , ext: 'js coffee'
-    , done: done
+    , ext: 'js'
   })
 
   stream
+    .on('start', function () {
+      if (!called) {
+        called = true;
+        cb();
+      }
+    })
     .on('restart', 'cssmin')
     .on('crash', function (){
       console.error('\nApplication has crashed!\n')
